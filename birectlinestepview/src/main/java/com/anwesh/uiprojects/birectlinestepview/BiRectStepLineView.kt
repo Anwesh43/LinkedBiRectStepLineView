@@ -170,4 +170,25 @@ class BiRectStepLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiRectStepLineView) {
+        private val animator : Animator = Animator(view)
+        private val bsrl : BiRectLineStep = BiRectLineStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#212121"))
+            bsrl.draw(canvas, paint)
+            animator.animate {
+                bsrl.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
