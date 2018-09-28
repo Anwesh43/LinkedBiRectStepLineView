@@ -23,6 +23,8 @@ fun Canvas.drawBRSLNode(i : Int, scale : Float, paint : Paint) {
     val gap : Float = h / (nodes + 1)
     val size : Float = gap / 2
     paint.color = Color.parseColor("#4527A0")
+    paint.strokeWidth = Math.min(w, h) / 60
+    paint.strokeCap = Paint.Cap.ROUND 
     save()
     translate(w/2, gap * i + gap)
     for (j in 0..1) {
