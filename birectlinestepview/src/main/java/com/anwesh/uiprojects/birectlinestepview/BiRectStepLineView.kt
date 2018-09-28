@@ -27,14 +27,14 @@ fun Canvas.drawBRSLNode(i : Int, scale : Float, paint : Paint) {
     translate(w/2, gap * i + gap)
     for (j in 0..1) {
         val sf : Float = 1f - 2 * j
-        val sc : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f * j))
+        val sc : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f * j)) * 2
         save()
         scale(sf, 1f)
-        val x : Float = (w - size) * sc
+        val x : Float = (w/2 - size) * sc
         save()
         translate(x + size/4, 0f)
         rotate(180f * sc)
-        drawRect(RectF(0f, -size/2, size/2, size/2), paint)
+        drawRect(RectF(-size/4, -size/2, size/4, size/2), paint)
         restore()
         drawLine(0f, 0f, x, 0f, paint)
         restore()
