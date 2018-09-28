@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.birectlinestepview
  * Created by anweshmishra on 28/09/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.content.Context
@@ -190,6 +191,14 @@ class BiRectStepLineView(ctx : Context) : View(ctx) {
             bsrl.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : BiRectStepLineView {
+            val view : BiRectStepLineView = BiRectStepLineView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
