@@ -16,6 +16,31 @@ val nodes : Int = 5
 
 val speed : Float = 0.05f
 
+fun Canvas.drawBRSLNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    val gap : Float = h / (nodes + 1)
+    val size : Float = gap / 2
+    paint.color = Color.parseColor("#4527A0")
+    save()
+    translate(w/2, gap * i + gap)
+    for (j in 0..1) {
+        val sf : Float = 1f - 2 * j
+        val sc : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f * j))
+        save()
+        scale(sf, 1f)
+        val x : Float = (w - size) * sc
+        save()
+        translate(x + size/4, 0f)
+        rotate(180f * sc)
+        drawRect(RectF(0f, -size/2, size/2, size/2), paint)
+        restore()
+        drawLine(0f, 0f, x, 0f, paint)
+        restore()
+    }
+    restore()
+}
+
 class BiRectStepLineView(ctx : Context) : View(ctx) {
 
     private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
